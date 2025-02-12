@@ -1,7 +1,10 @@
 FROM python:2.7-buster
 
-# Define metadata
-LABEL maintainer="FBarrCa"
+# Metadata labels following the OCI recommendations
+LABEL org.opencontainers.image.title="Pebble SDK Dev Container" \
+    org.opencontainers.image.description="A containerized development environment for Pebble SDK projects" \
+    org.opencontainers.image.version="1.0.0" \
+    org.opencontainers.image.authors="FBarrCa"
 
 # Set arguments for flexibility
 ARG PEBBLE_TOOL_VERSION=pebble-sdk-4.5-linux64
@@ -18,21 +21,20 @@ ENV PATH="${NVM_DIR}/versions/node/v${NODE_VERSION}/bin:/opt/${PEBBLE_TOOL_VERSI
 # Update system and install required dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        curl \
-        libfreetype6-dev \
-        bash-completion \
-        libsdl1.2debian \
-        libfdt1 \
-        libpixman-1-0 \
-        libglib2.0-dev \
-        vim \
-        zsh \
-        git \
-        wget \
-        firefox-esr \
-        python-virtualenv && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    curl \
+    libfreetype6-dev \
+    bash-completion \
+    libsdl1.2debian \
+    libfdt1 \
+    libpixman-1-0 \
+    libglib2.0-dev \
+    vim \
+    zsh \
+    git \
+    wget \
+    firefox-esr \
+    python-virtualenv && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Download and extract Pebble SDK
 RUN curl -sSL https://developer.rebble.io/s3.amazonaws.com/assets.getpebble.com/pebble-tool/${PEBBLE_TOOL_VERSION}.tar.bz2 \
@@ -72,6 +74,12 @@ RUN git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh && \
 USER root
 RUN usermod --shell $(which zsh) pebble
 
+# Copy the entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /entrypoint.sh
+
 # Switch to non-root user for further installations
 USER pebble
 
@@ -87,12 +95,8 @@ RUN curl -L -o /tmp/sdk-core-${PEBBLE_SDK_VERSION}.tar.bz2 \
     pebble sdk install /tmp/sdk-core-${PEBBLE_SDK_VERSION}.tar.bz2 && \
     pebble sdk activate ${PEBBLE_SDK_VERSION} && \
     rm /tmp/sdk-core-${PEBBLE_SDK_VERSION}.tar.bz2
-
-# Define mountable volume for projects
-VOLUME /workspace/
-
 # Set default working directory
 WORKDIR /workspace/
 
 # Default command
-CMD ["zsh"]
+CMD ["/bin/zsh", "/entrypoint.sh"]

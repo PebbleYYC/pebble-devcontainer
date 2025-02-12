@@ -5,6 +5,37 @@ This repository provides a **containerized** development setup for [Pebble](http
 Happy coding! 🚀🎉  
 
 ---
+Got it! Here's a refined version with clearer wording:  
+
+---
+
+### 🖥️ Emulator Notes  
+
+To run the Pebble emulator inside the container, ensure your system meets the necessary display requirements based on your OS **before** running the container:  
+
+#### **Windows Users**  
+- You have **two options**:  
+  1. **Use WSL2**, which includes native X11 forwarding when running GUI applications.  
+  2. **Alternatively**, use an X server like [VcXsrv](https://sourceforge.net/projects/vcxsrv/) or [Xming](https://sourceforge.net/projects/xming/) if running Docker natively on Windows (outside WSL2).  
+
+#### **Linux Users (X11 and Wayland)**  
+- **X11 Users:** The container should automatically detect and use your X server if `DISPLAY` is set.  
+- **Wayland Users:** Ensure your session exports:  
+  ```sh
+  export XDG_RUNTIME_DIR=/run/user/$(id -u)
+  export WAYLAND_DISPLAY=wayland-0
+  ```
+#### **Mac Users (XQuartz Required)**  
+- Install and launch **XQuartz**:  
+  ```sh
+  brew install --cask xquartz
+  ```
+- Ensure `DISPLAY` is correctly set inside the container:  
+  ```sh
+  export DISPLAY=host.docker.internal:0
+  ```
+- Restart your session or log out and back in after installing XQuartz.  
+
 
 ## ✅ Prerequisites  
 
