@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Navigate to the directory containing this script
+SCRIPT_DIR="$(cd "$(dirname "$0")"; pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# Use the Webpack binary from the project's node_modules
+WEBPACK_BIN="$PROJECT_ROOT/node_modules/.bin/webpack"
+
+# Run Webpack with the correct configuration file
+"$WEBPACK_BIN" --config "$PROJECT_ROOT/webpack.config.js" > "$PROJECT_ROOT/webpack-output.log" 2>&1
+
+# Notify the user where the output log is stored
+echo "Webpack process completed. Output log: $PROJECT_ROOT/webpack-output.log"

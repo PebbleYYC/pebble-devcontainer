@@ -1,0 +1,73 @@
+asset pebble-js-app.js 1.03 MiB [emitted] (name: main) 1 related asset
+runtime modules 916 bytes 4 modules
+modules by path ./node_modules/core-js/modules/*.js 363 KiB
+  ./node_modules/core-js/modules/es.symbol.js 322 bytes [built] [code generated]
+  ./node_modules/core-js/modules/es.json.stringify.js 2.98 KiB [built] [code generated]
+  + 315 modules
+modules by path ./node_modules/core-js/internals/*.js 234 KiB
+  ./node_modules/core-js/internals/path.js 98 bytes [built] [code generated]
+  ./node_modules/core-js/internals/export.js 2.65 KiB [built] [code generated]
+  + 264 modules
+modules by path ./src/pkjs/*.js 5.97 KiB
+  ./src/pkjs/index.js 39 bytes [built] [code generated] [1 error]
+  ./src/pkjs/apikey.js 503 bytes [built] [code generated]
+  + 3 modules
++ 5 modules
+
+ERROR in ./src/pkjs/index.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /workspace/src/pkjs/index.js: Unexpected token (85:46)
+
+  83 | }
+  84 |
+> 85 | function send_to_watch(departures_for_watch) {
+     |                                               ^
+    at constructor (/workspace/node_modules/@babel/parser/lib/index.js:360:19)
+    at Parser.raise (/workspace/node_modules/@babel/parser/lib/index.js:3338:19)
+    at Parser.unexpected (/workspace/node_modules/@babel/parser/lib/index.js:3358:16)
+    at Parser.parseExprAtom (/workspace/node_modules/@babel/parser/lib/index.js:11153:16)
+    at Parser.parseExprSubscripts (/workspace/node_modules/@babel/parser/lib/index.js:10785:23)
+    at Parser.parseUpdate (/workspace/node_modules/@babel/parser/lib/index.js:10770:21)
+    at Parser.parseMaybeUnary (/workspace/node_modules/@babel/parser/lib/index.js:10750:23)
+    at Parser.parseMaybeUnaryOrPrivate (/workspace/node_modules/@babel/parser/lib/index.js:10603:61)
+    at Parser.parseExprOps (/workspace/node_modules/@babel/parser/lib/index.js:10608:23)
+    at Parser.parseMaybeConditional (/workspace/node_modules/@babel/parser/lib/index.js:10585:23)
+    at Parser.parseMaybeAssign (/workspace/node_modules/@babel/parser/lib/index.js:10538:21)
+    at Parser.parseExpressionBase (/workspace/node_modules/@babel/parser/lib/index.js:10491:23)
+    at allowInAnd (/workspace/node_modules/@babel/parser/lib/index.js:10487:39)
+    at Parser.allowInAnd (/workspace/node_modules/@babel/parser/lib/index.js:12121:16)
+    at Parser.parseExpression (/workspace/node_modules/@babel/parser/lib/index.js:10487:17)
+    at Parser.parseStatementContent (/workspace/node_modules/@babel/parser/lib/index.js:12559:23)
+    at Parser.parseStatementLike (/workspace/node_modules/@babel/parser/lib/index.js:12432:17)
+    at Parser.parseStatementListItem (/workspace/node_modules/@babel/parser/lib/index.js:12412:17)
+    at Parser.parseBlockOrModuleBlockBody (/workspace/node_modules/@babel/parser/lib/index.js:12980:61)
+    at Parser.parseBlockBody (/workspace/node_modules/@babel/parser/lib/index.js:12973:10)
+    at Parser.parseBlock (/workspace/node_modules/@babel/parser/lib/index.js:12961:10)
+    at Parser.parseFunctionBody (/workspace/node_modules/@babel/parser/lib/index.js:11810:24)
+    at Parser.parseFunctionBodyAndFinish (/workspace/node_modules/@babel/parser/lib/index.js:11796:10)
+    at withSmartMixTopicForbiddingContext (/workspace/node_modules/@babel/parser/lib/index.js:13105:12)
+    at Parser.withSmartMixTopicForbiddingContext (/workspace/node_modules/@babel/parser/lib/index.js:12103:14)
+    at Parser.parseFunction (/workspace/node_modules/@babel/parser/lib/index.js:13104:10)
+    at Parser.parseFunctionStatement (/workspace/node_modules/@babel/parser/lib/index.js:12789:17)
+    at Parser.parseStatementContent (/workspace/node_modules/@babel/parser/lib/index.js:12456:21)
+    at Parser.parseStatementLike (/workspace/node_modules/@babel/parser/lib/index.js:12432:17)
+    at Parser.parseModuleItem (/workspace/node_modules/@babel/parser/lib/index.js:12409:17)
+    at Parser.parseBlockOrModuleBlockBody (/workspace/node_modules/@babel/parser/lib/index.js:12980:36)
+    at Parser.parseBlockBody (/workspace/node_modules/@babel/parser/lib/index.js:12973:10)
+    at Parser.parseProgram (/workspace/node_modules/@babel/parser/lib/index.js:12306:10)
+    at Parser.parseTopLevel (/workspace/node_modules/@babel/parser/lib/index.js:12296:25)
+    at Parser.parse (/workspace/node_modules/@babel/parser/lib/index.js:14152:10)
+    at parse (/workspace/node_modules/@babel/parser/lib/index.js:14186:38)
+    at parser (/workspace/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/workspace/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/workspace/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/workspace/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/workspace/node_modules/gensync/index.js:261:32)
+    at gen.next (/workspace/node_modules/gensync/index.js:273:13)
+    at async.call.value (/workspace/node_modules/gensync/index.js:223:11)
+
+webpack 5.99.5 compiled with 1 error in 8392 ms
